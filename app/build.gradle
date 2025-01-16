@@ -1,0 +1,87 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+android {
+    namespace 'com.loan.bgloan'
+    compileSdk build_versions.compileSdk
+
+    defaultConfig {
+        applicationId "com.loan.bgloan"
+        minSdk build_versions.minSdk
+        targetSdk build_versions.targetSdk
+        versionCode app_version.versionCode
+        versionName app_version.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+    lintOptions {
+        abortOnError false
+        warning 'InvalidPackage'
+    }
+
+}
+
+dependencies {
+    implementation project(':indicatorseekbar')
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'androidx.annotation:annotation:1.6.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+    implementation project(':pickerview')
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.android_junit
+    androidTestImplementation deps.test.espresso
+
+    implementation deps.material
+    implementation deps.appcompat
+    implementation deps.swiperefreshlayout
+    implementation deps.recyclerview
+    implementation deps.constraintlayout
+
+    implementation deps.base_util
+    implementation deps.base_adapter
+
+    implementation deps.android_ktx
+
+    implementation deps.flowlayout
+
+    implementation deps.logger
+    implementation deps.multidex
+
+    //leakCanary
+    debugImplementation deps.leakcanary
+
+    // MVVMFrame相关依赖
+    kapt deps.room.compiler
+    implementation deps.dagger.hilt_android
+    kapt  deps.dagger.hilt_compiler
+    implementation project(':mvvmframe')
+
+}
+kapt {
+    correctErrorTypes true
+}
