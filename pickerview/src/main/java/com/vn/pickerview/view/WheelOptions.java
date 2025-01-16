@@ -3,7 +3,6 @@ package com.vn.pickerview.view;
 import android.graphics.Typeface;
 import android.view.View;
 
-
 import com.vn.pickerview.R;
 import com.vn.pickerview.adapter.ArrayWheelAdapter;
 import com.vn.pickerview.listener.OnItemSelectedListener;
@@ -263,6 +262,11 @@ public class WheelOptions<T> {
         wv_option1.setCyclic(cyclic);
         wv_option2.setCyclic(cyclic);
         wv_option3.setCyclic(cyclic);
+    }
+    public void setIsScale(boolean cyclic) {
+        wv_option1.setIsScale(cyclic);
+        wv_option2.setIsScale(cyclic);
+        wv_option3.setIsScale(cyclic);
     }
 
     /**

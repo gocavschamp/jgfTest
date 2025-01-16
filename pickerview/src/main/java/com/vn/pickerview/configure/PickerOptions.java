@@ -6,7 +6,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import com.vn.pickerview.R;
 import com.vn.pickerview.listener.CustomListener;
 import com.vn.pickerview.listener.OnOptionsSelectChangeListener;
@@ -42,31 +41,32 @@ public class PickerOptions {
     public CustomListener customListener;
 
     //options picker
-    public String label1, label2, label3;//单位字符
-    public int option1, option2, option3;//默认选中项
-    public int x_offset_one, x_offset_two, x_offset_three;//x轴偏移量
+    public String label1, label2, label3;//Unit characters
+    public int option1, option2, option3;//Default selection
+    public int x_offset_one, x_offset_two, x_offset_three;//X-axis offset
 
-    public boolean cyclic1 = false;//是否循环，默认否
+    public boolean cyclic1 = false;//Whether it loops or not, the default is no
     public boolean cyclic2 = false;
     public boolean cyclic3 = false;
 
-    public boolean isRestoreItem = false; //切换时，还原第一项
+    public boolean isRestoreItem = false; //When switching, the first item is restored
 
 
     //time picker
-    public boolean[] type = new boolean[]{true, true, true, false, false, false};//显示类型，默认显示： 年月日
+    public boolean[] type = new boolean[]{true, true, true, false, false, false};//Display type, default display: year, month, and day
 
-    public Calendar date;//当前选中时间
-    public Calendar startDate;//开始时间
-    public Calendar endDate;//终止时间
-    public int startYear;//开始年份
-    public int endYear;//结尾年份
+    public Calendar date;//The time currently selected
+    public Calendar startDate;//Start time
+    public Calendar endDate;//Termination time
+    public int startYear;
+    public int endYear;
 
-    public boolean cyclic = false;//是否循环
-    public boolean isLunarCalendar = false;//是否显示农历
+    public boolean cyclic = false;
+    public boolean isScale = true;
+    public boolean isLunarCalendar = false;//Whether or not to display the lunar calendar
 
-    public String label_year, label_month, label_day, label_hours, label_minutes, label_seconds;//单位
-    public int x_offset_year, x_offset_month, x_offset_day, x_offset_hours, x_offset_minutes, x_offset_seconds;//单位
+    public String label_year, label_month, label_day, label_hours, label_minutes, label_seconds;
+    public int x_offset_year, x_offset_month, x_offset_day, x_offset_hours, x_offset_minutes, x_offset_seconds;
 
 
     public PickerOptions(int buildType) {
@@ -83,33 +83,33 @@ public class PickerOptions {
     public int textGravity = Gravity.CENTER;
     public Context context;
 
-    public String textContentConfirm;//确定按钮文字
-    public String textContentCancel;//取消按钮文字
-    public String textContentTitle;//标题文字
+    public String textContentConfirm;
+    public String textContentCancel;
+    public String textContentTitle;
 
-    public int textColorConfirm = PICKER_VIEW_BTN_COLOR_NORMAL;//确定按钮颜色
-    public int textColorCancel = PICKER_VIEW_BTN_COLOR_NORMAL;//取消按钮颜色
-    public int textColorTitle = PICKER_VIEW_COLOR_TITLE;//标题颜色
+    public int textColorConfirm = PICKER_VIEW_BTN_COLOR_NORMAL;
+    public int textColorCancel = PICKER_VIEW_BTN_COLOR_NORMAL;
+    public int textColorTitle = PICKER_VIEW_COLOR_TITLE;
 
-    public int bgColorWheel = PICKER_VIEW_BG_COLOR_DEFAULT;//滚轮背景颜色
-    public int bgColorTitle = PICKER_VIEW_BG_COLOR_TITLE;//标题背景颜色
+    public int bgColorWheel = PICKER_VIEW_BG_COLOR_DEFAULT;
+    public int bgColorTitle = PICKER_VIEW_BG_COLOR_TITLE;
 
-    public int textSizeSubmitCancel = 17;//确定取消按钮大小
-    public int textSizeTitle = 18;//标题文字大小
-    public int textSizeContent = 18;//内容文字大小
+    public int textSizeSubmitCancel = 17;
+    public int textSizeTitle = 18;
+    public int textSizeContent = 18;
 
-    public int textColorOut = 0xFFa8a8a8; //分割线以外的文字颜色
-    public int textColorCenter = 0xFF2a2a2a; //分割线之间的文字颜色
-    public int dividerColor = 0xFFd5d5d5; //分割线的颜色
-    public int outSideColor = -1; //显示时的外部背景色颜色,默认是灰色
+    public int textColorOut = 0xFFa8a8a8;
+    public int textColorCenter = 0xFF2a2a2a;
+    public int dividerColor = 0xFFd5d5d5;
+    public int outSideColor = -1;
 
-    public float lineSpacingMultiplier = 1.6f; // 条目间距倍数 默认1.6
-    public boolean isDialog;//是否是对话框模式
+    public float lineSpacingMultiplier = 1.6f;
+    public boolean isDialog;
 
-    public boolean cancelable = true;//是否能取消
-    public boolean isCenterLabel = false;//是否只显示中间的label,默认每个item都显示
-    public Typeface font = Typeface.MONOSPACE;//字体样式
-    public WheelView.DividerType dividerType = WheelView.DividerType.FILL;//分隔线类型
-    public int itemsVisibleCount = 9; //最大可见条目数
-    public boolean isAlphaGradient = false; //透明度渐变
+    public boolean cancelable = true;
+    public boolean isCenterLabel = false;
+    public Typeface font = Typeface.MONOSPACE;
+    public WheelView.DividerType dividerType = WheelView.DividerType.FILL;
+    public int itemsVisibleCount = 9;
+    public boolean isAlphaGradient = false;
 }

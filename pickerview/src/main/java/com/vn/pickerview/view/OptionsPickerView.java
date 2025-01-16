@@ -9,14 +9,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.vn.pickerview.R;
 import com.vn.pickerview.configure.PickerOptions;
 
 import java.util.List;
 
 /**
- * 条件选择器
  * Created by Sai on 15/11/22.
  */
 public class OptionsPickerView<T> extends BasePickerView implements View.OnClickListener {
@@ -89,6 +87,7 @@ public class OptionsPickerView<T> extends BasePickerView implements View.OnClick
         wheelOptions.setTextXOffset(mPickerOptions.x_offset_one, mPickerOptions.x_offset_two, mPickerOptions.x_offset_three);
         wheelOptions.setCyclic(mPickerOptions.cyclic1, mPickerOptions.cyclic2, mPickerOptions.cyclic3);
         wheelOptions.setTypeface(mPickerOptions.font);
+        wheelOptions.setIsScale(mPickerOptions.isScale);
 
         setOutSideCancelable(mPickerOptions.cancelable);
 
