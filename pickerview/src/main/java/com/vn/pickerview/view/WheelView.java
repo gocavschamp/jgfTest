@@ -16,7 +16,6 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 
-
 import com.vn.pickerview.R;
 import com.vn.pickerview.adapter.WheelAdapter;
 import com.vn.pickerview.interfaces.IPickerViewData;
@@ -81,8 +80,10 @@ public class WheelView extends View {
     private int dividerWidth;
 
     // 条目间距倍数
-    private float lineSpacingMultiplier = 1.6F;
+//    private float lineSpacingMultiplier = 0.8F;
+    private float lineSpacingMultiplier = 1.2F;
     private boolean isLoop;
+    private boolean isScale = true;
 
     // 第一条线Y坐标值
     private float firstLineY;
@@ -121,7 +122,8 @@ public class WheelView extends View {
     private int mGravity = Gravity.CENTER;
     private int drawCenterContentStart = 0;//中间选中文字开始绘制位置
     private int drawOutContentStart = 0;//非中间文字开始绘制位置
-    private static final float SCALE_CONTENT = 0.8F;//非中间文字则用此控制高度，压扁形成3d错觉
+//    private static final float SCALE_CONTENT = 0.8F;//非中间文字则用此控制高度，压扁形成3d错觉
+    private static final float SCALE_CONTENT = 0.85F;//非中间文字则用此控制高度，压扁形成3d错觉
     private float CENTER_CONTENT_OFFSET;//偏移量
 
     private boolean isAlphaGradient = false; //透明度渐变
@@ -293,6 +295,10 @@ public class WheelView extends View {
         isLoop = cyclic;
     }
 
+    public final void setIsScale(boolean scale) {
+        isScale = scale;
+    }
+
     public final void setTypeface(Typeface font) {
         typeface = font;
         paintOuterText.setTypeface(typeface);
@@ -439,6 +445,8 @@ public class WheelView extends View {
         } else {
             canvas.drawLine(0.0F, firstLineY, measuredWidth, firstLineY, paintIndicator);
             canvas.drawLine(0.0F, secondLineY, measuredWidth, secondLineY, paintIndicator);
+            canvas.drawRect(0.0f, firstLineY, measuredWidth, secondLineY, paintIndicator);//my code
+
         }
 
         //只显示选中项Label文字的模式，并且Label文字不为空，则进行绘制
@@ -452,9 +460,8 @@ public class WheelView extends View {
         int counter = 0;
         while (counter < itemsVisible) {
             Object showText;
-            int index = preCurrentIndex - (itemsVisible / 2 - counter);//索引值，即当前在控件中间的item看作数据源的中间，计算出相对源数据源的index值
+            int index = preCurrentIndex - (itemsVisible / 2 - counter);
 
-            //判断是否循环，如果是循环数据源也使用相对循环的position获取对应的item值，如果不是循环则超出数据源范围使用""空白字符串填充，在界面上形成空白无数据的item项
             if (isLoop) {
                 index = getLoopMappingIndex(index);
                 showText = adapter.getItem(index);
@@ -501,7 +508,8 @@ public class WheelView extends View {
                     // 条目经过第一条线
                     canvas.save();
                     canvas.clipRect(0, 0, measuredWidth, firstLineY - translateY);
-                    canvas.scale(1.0F, (float) Math.sin(radian) * SCALE_CONTENT);
+                    if (isScale)
+                        canvas.scale(1.0F, (float) Math.sin(radian) * SCALE_CONTENT);
                     setOutPaintStyle(offsetCoefficient, angle);
                     canvas.drawText(contentText, drawOutContentStart, maxTextHeight, paintOuterText);
                     canvas.restore();
@@ -519,6 +527,7 @@ public class WheelView extends View {
                     canvas.restore();
                     canvas.save();
                     canvas.clipRect(0, secondLineY - translateY, measuredWidth, (int) (itemHeight));
+                    if (isScale)
                     canvas.scale(1.0F, (float) Math.sin(radian) * SCALE_CONTENT);
                     setOutPaintStyle(offsetCoefficient, angle);
                     canvas.drawText(contentText, drawOutContentStart, maxTextHeight, paintOuterText);
@@ -535,6 +544,7 @@ public class WheelView extends View {
                     // 其他条目
                     canvas.save();
                     canvas.clipRect(0, 0, measuredWidth, (int) (itemHeight));
+                    if (isScale)
                     canvas.scale(1.0F, (float) Math.sin(radian) * SCALE_CONTENT);
                     setOutPaintStyle(offsetCoefficient, angle);
                     // 控制文字水平偏移距离

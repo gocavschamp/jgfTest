@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.vn.pickerview.R;
 import com.vn.pickerview.configure.PickerOptions;
 import com.vn.pickerview.listener.ISelectTimeCallback;
@@ -100,6 +99,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         }
 
         wheelTime.setLunarMode(mPickerOptions.isLunarCalendar);
+        wheelTime.setLunarMode(mPickerOptions.isLunarCalendar);
 
         if (mPickerOptions.startYear != 0 && mPickerOptions.endYear != 0
                 && mPickerOptions.startYear <= mPickerOptions.endYear) {
@@ -125,7 +125,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
             } else {
                 setRangDate();
             }
-        } else {//没有设置时间范围限制，则会使用默认范围。
+        } else {
             setRangDate();
         }
 
@@ -138,12 +138,14 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         wheelTime.setAlphaGradient(mPickerOptions.isAlphaGradient);
         setOutSideCancelable(mPickerOptions.cancelable);
         wheelTime.setCyclic(mPickerOptions.cyclic);
+        wheelTime.setIsScale(mPickerOptions.isScale);
         wheelTime.setDividerColor(mPickerOptions.dividerColor);
         wheelTime.setDividerType(mPickerOptions.dividerType);
         wheelTime.setLineSpacingMultiplier(mPickerOptions.lineSpacingMultiplier);
         wheelTime.setTextColorOut(mPickerOptions.textColorOut);
         wheelTime.setTextColorCenter(mPickerOptions.textColorCenter);
         wheelTime.isCenterLabel(mPickerOptions.isCenterLabel);
+        wheelTime.setTextTypeFace(mPickerOptions.font);
     }
 
 

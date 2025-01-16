@@ -1,7 +1,7 @@
 package com.vn.pickerview.view;
 
+import android.graphics.Typeface;
 import android.view.View;
-
 
 import com.vn.pickerview.R;
 import com.vn.pickerview.adapter.ArrayWheelAdapter;
@@ -643,6 +643,14 @@ public class WheelTime {
         wv_minutes.setCyclic(cyclic);
         wv_seconds.setCyclic(cyclic);
     }
+    public void setIsScale(boolean cyclic) {
+        wv_year.setIsScale(cyclic);
+        wv_month.setIsScale(cyclic);
+        wv_day.setIsScale(cyclic);
+        wv_hours.setIsScale(cyclic);
+        wv_minutes.setIsScale(cyclic);
+        wv_seconds.setIsScale(cyclic);
+    }
 
     public String getTime() {
         if (isLunarCalendar) {
@@ -848,6 +856,14 @@ public class WheelTime {
         wv_hours.setTextColorCenter(textColorCenter);
         wv_minutes.setTextColorCenter(textColorCenter);
         wv_seconds.setTextColorCenter(textColorCenter);
+    }
+    public void setTextTypeFace(Typeface font) {
+        wv_day.setTypeface(font);
+        wv_month.setTypeface(font);
+        wv_year.setTypeface(font);
+        wv_hours.setTypeface(font);
+        wv_minutes.setTypeface(font);
+        wv_seconds.setTypeface(font);
     }
 
     /**
